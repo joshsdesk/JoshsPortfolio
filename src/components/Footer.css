@@ -1,0 +1,14 @@
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    position: relative;
+    color: white;
+    font-size: 1.2rem;
+  }
+  
+  /* Style the FontAwesome icon */
+  .jedi-icon {
+    color: #b700ff; /* Gold color for Space Awesome icon */
+    margin-left: 5px;
+  }
