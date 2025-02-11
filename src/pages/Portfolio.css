@@ -6,136 +6,139 @@
   color: white;
 }
 
-/* Swiper Container - Full Width */
+/* Swiper */
 .swiper {
   width: 100%;
-  max-width: 1600px; /* Increase Swiper width */
-  height: 600px; /* Taller to fit large hexagons */
+  max-width: 1400px;
+  height: 600px;
   margin: auto;
   overflow: hidden;
 }
 
-/* Swiper Slides (Hexagon Shape) */
+/* Swiper Slide */
 .swiper-slide {
-  width: 500px; /* Increase width */
-  height: 600px; /* Increase height */
+  width: 420px;
+  height: 580px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.5s;
+  margin: 0 20px; /* Adds spacing between slides */
   position: relative;
 }
 
-/* Image Inside Hexagon */
-.hexagon img {
+/* Product Card */
+.card {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s;
-}
-/* Hexagon Container with Neon Glow */
-.hexagon {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  clip-path: polygon(
-    50% 0%, 100% 25%, 100% 75%, 
-    50% 100%, 0% 75%, 0% 25%
-  );
-  overflow: hidden;
-  transition: transform 0.5s ease-in-out;
-  border-radius: 15px;
-  background: black; /* Ensure background is black */
-
-  /* Stronger Neon Glow */
-  box-shadow: 
-    0 0 30px rgba(0, 255, 0, 1),
-    0 0 60px rgba(0, 255, 0, 0.9),
-    0 0 90px rgba(0, 255, 0, 0.7);
-}
-
-/* Ensuring Glow Is Behind */
-.hexagon::before {
-  content: "";
-  position: absolute;
-  width: 150%;
-  height: 150%;
-  top: -25%;
-  left: -25%;
-  border-radius: 50%;
-  background: rgba(0, 255, 0, 0.6);
-  filter: blur(50px);
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* Modal Content */
-/* Modal Overlay - Fullscreen with Blur */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8); /* Dark overlay */
-  backdrop-filter: blur(10px); /* Blurs the background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Modal Overlay - Fullscreen with Blur */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8); /* Dark overlay */
-  backdrop-filter: blur(10px); /* Blurs background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Modal Content - Centered and Responsive */
-.modal-content {
-  background: black;
+  height: 90%;
+  background: rgba(255, 255, 255, 0.15); /* Reduced transparency */
   padding: 20px;
   border-radius: 15px;
   text-align: center;
-  width: 40%; /* Adjusted width */
-  max-width: 500px; /* Prevents it from being too large */
-  box-shadow: 
-    0 0 15px rgba(0, 255, 0, 0.9), 
-    0 0 30px rgba(0, 255, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8); /* Neon glow */
+}
+
+/* Image Inside Card */
+.card-image {
+  width: 90%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Card Content */
+.card-content {
+  padding: 15px;
+}
+
+.card-content h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.card-content p {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: #ddd;
+}
+
+/* Repository Stats */
+.repo-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #00ff00;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background: black;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  width: 40%;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
   position: relative;
 }
 
-/* Modal Title */
-.modal-content h2 {
-  font-size: 1.8rem;
-  color: white;
-  margin-bottom: 10px;
-}
-
 /* Modal Image */
-.modal-content img {
+.modal-image {
   width: 100%;
-  max-height: 300px; /* Prevents image from overflowing */
+  max-height: 300px;
   border-radius: 10px;
   margin-bottom: 10px;
   object-fit: cover;
 }
 
-/* Close Modal Button - Positioned Correctly */
+/* GitHub Link */
+.modal-link {
+  display: inline-block;
+  background: #00ff00;
+  color: black;
+  padding: 10px 15px;
+  margin-top: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.modal-link:hover {
+  background: white;
+  color: black;
+}
+
+/* Close Modal Button */
 .close-modal {
   position: absolute;
-  top: 8px;
-  right: 10px;
-  font-size: 1.5rem;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
   cursor: pointer;
   color: red;
   background: black;

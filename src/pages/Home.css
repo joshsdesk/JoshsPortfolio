@@ -20,34 +20,45 @@ html {
 .home {
   width: 100%;
   height: 100vh;
-  background-image: url('../assets/images/background-desktop2.png'); /* Desktop version */
+  background-image: url('../assets/images/background-desktop.png'); /* Make sure path is correct */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Aligns text to the left */
-  text-align: left; /* Ensures text is aligned to the left */
-  padding-left: 10%; /* Moves text from the edge */
+  justify-content: flex-start; /* Moves everything to the left */
+  position: relative;
+  padding-left: 5%; /* Adjust left padding */
 }
 
-/* Text Styling */
+/* Home Text */
 .home-text {
-  margin-top: 10%;
-  font-size: 60px;
+  position: absolute;
+  left: 10%; /* Adjust horizontal positioning */
+  top: 50%; /* Move text down */
+  transform: translateY(-50%); /* Center text vertically */
   text-align: left;
 }
 
+/* Styling for UX/UI Ninja */
+.home-text p {
+  font-size: 7rem;
+  color: white;
+  margin-bottom: 10px;
+}
+
+/* Styling for Name */
 .home-text h1 {
-  font-size: 80px;
-  margin-top: 40px;
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
 }
 
+/* Make "Josh" Red */
 .home-text h1 span {
-  color: #ff0000;
+  color: red;
 }
-
 
 /* Body Styling */
 body {

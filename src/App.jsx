@@ -14,7 +14,7 @@ const App = () => {
       <main>
         <section id="home"><Home /></section>
         <section id="about"><About /></section>
-        <section id="portfolio"><Portfolio /></section>
+        <Portfolio /> {/* Directly render Portfolio without wrapping it in a section */}
         <section id="contact"><Contact /></section>
         <section id="resume"><Resume /></section>
       </main>

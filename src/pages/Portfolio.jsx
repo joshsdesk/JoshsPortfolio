@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
@@ -6,27 +6,34 @@ import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 import "./Portfolio.css";
 
-// Import images for projects
-import project1 from "../assets/images/project1.png";
-import project2 from "../assets/images/project2.png";
-import project3 from "../assets/images/project3.png";
-import project4 from "../assets/images/project4.png";
-
-const projects = [
-  { id: 1, title: "Project One", image: project1 },
-  { id: 2, title: "Project Two", image: project2 },
-  { id: 3, title: "Project Three", image: project3 },
-  { id: 4, title: "Project Four", image: project4 },
-];
+const GITHUB_USERNAME = "JoshsDesk"; // Replace with your GitHub username
+const REPO_COUNT = 6; // Number of repos to fetch
 
 const Portfolio = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [repos, setRepos] = useState([]);
+  const [selectedRepo, setSelectedRepo] = useState(null);
 
-   // Close modal on ESC key press
-  React.useEffect(() => {
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/JoshsDesk/repos?per_page=${REPO_COUNT}`
+        );
+        const data = await response.json();
+        setRepos(data);
+      } catch (error) {
+        console.error("Error fetching GitHub repositories:", error);
+      }
+    };
+
+    fetchRepos();
+  }, []);
+
+  // Close modal on ESC key press
+  useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        setSelectedProject(null);
+        setSelectedRepo(null);
       }
     };
 
@@ -43,12 +50,13 @@ const Portfolio = () => {
         effect={"coverflow"}
         centeredSlides={true}
         slidesPerView={"auto"}
+        spaceBetween={40}
         loop={true}
         coverflowEffect={{
           rotate: 0,
-          stretch: 0,
-          depth: 400,
-          modifier: 2,
+          stretch: 50,
+          depth: 200,
+          modifier: 1.5,
           slideShadows: false,
         }}
         navigation={{
@@ -58,15 +66,12 @@ const Portfolio = () => {
         modules={[Navigation, EffectCoverflow]}
         className="swiper"
       >
-        
-        {projects.map((project) => (
-          <SwiperSlide key={project.id} className="swiper-slide">
-            <div className="hexagon">
-              <img
-                src={project.image}
-                alt={project.title}
-                onClick={() => setSelectedProject(project)}
-              />
+        {repos.map((repo) => (
+          <SwiperSlide key={repo.id} className="swiper-slide">
+            <div className="card" onClick={() => setSelectedRepo(repo)}>
+              <h3>{repo.name}</h3>
+              <p>{repo.description ? repo.description : "No description available."}</p>
+              <span>⭐ {repo.stargazers_count} | 🍴 {repo.forks_count}</span>
             </div>
           </SwiperSlide>
         ))}
@@ -76,13 +81,20 @@ const Portfolio = () => {
       <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div>
 
-      {/* Modal for Project Details */}
-      {selectedProject && (
-        <div className="modal-overlay" onClick={() => setSelectedProject(null)}>
+      {/* Modal for Repo Details */}
+      {selectedRepo && (
+        <div className="modal-overlay" onClick={() => setSelectedRepo(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-modal" onClick={() => setSelectedProject(null)}>&times;</span>
-            <h2>{selectedProject.title}</h2>
-            <img src={selectedProject.image} alt={selectedProject.title} />
+            <span className="close-modal" onClick={() => setSelectedRepo(null)}>
+              &times;
+            </span>
+            <h2>{selectedRepo.name}</h2>
+            <p>{selectedRepo.description ? selectedRepo.description : "No description available."}</p>
+            <p>🌟 Stars: {selectedRepo.stargazers_count} | 🍴 Forks: {selectedRepo.forks_count}</p>
+            <p>📅 Created: {new Date(selectedRepo.created_at).toLocaleDateString()}</p>
+            <a href={selectedRepo.html_url} target="_blank" rel="noopener noreferrer" className="modal-link">
+              View on GitHub
+            </a>
           </div>
         </div>
       )}
