@@ -22,6 +22,18 @@ const projects = [
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState(null);
 
+   // Close modal on ESC key press
+  React.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedProject(null);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
     <section id="portfolio" className="portfolio">
       <h1 className="page-title">Portfolio</h1>
