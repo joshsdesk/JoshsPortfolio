@@ -7,7 +7,7 @@
 
 html, body {
   width: 100%;
-  height: 100;
+  height: 100vh;
   overflow-x: hidden;
 }
 
@@ -59,11 +59,27 @@ nav button {
 section {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(8px); /* Blurred effect on sections */
 }
+
+/* Page Title Styling */
+.page-title {
+  text-align: center;
+  font-size: 3rem;
+  color: white;
+  margin-top: 50px; /* Spacing from top */
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10; /* Ensures it stays above other content */
+  pointer-events: none; /* Prevents interaction issues */
+}
+
 
 /* Footer */
 footer {
@@ -72,3 +88,4 @@ footer {
   background: rgba(0, 0, 0, 0.8);
   position: relative;
 }
+

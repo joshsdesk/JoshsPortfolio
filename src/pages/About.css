@@ -1,51 +1,151 @@
+/* About Section */
+/* Page Titles - Centered at the Top */
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: white;
+}
+
 .about {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full screen height */
-    background: black; /* Keeps the dark theme */
-    color: white;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full screen height */
+  background: black; 
+  color: white;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  width: 90%;
+}
+
+/* Left Side - Image */
+.about-image {
+  flex: 1;
+  text-align: center;
+  order: 1; 
+}
+
+.about-image img {
+  width: 500px; /* Adjust as needed */
+  height: auto;
+  object-fit: cover;
+  border: 3px solid #ff0000; /* Red border */
+  border-radius: 15px;
+}
+
+/* Right Side - About Text & Tabs */
+.about-text {
+  flex: 1;
+  padding-left: 20px; /* Adjust spacing */
+  order: 2; /* Moves text to the right */
+}
+
+/* Title Styling */
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+/* Make only "Josh" red */
+.red-text {
+  color: #ff0000; /* Red color */
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* === TAB SYSTEM === */
+
+/* Tab Titles */
+.tab-titles {
+  display: flex;
+  margin: 20px 0 40px;
+}
+
+.tab-links {
+  margin-right: 50px;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  color: white;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Underline animation */
+.tab-links::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  background: #ff0000;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  transition: width 0.5s;
+}
+
+.tab-links.active-link::after {
+  width: 50%;
+}
+
+/* Fix Blurred Tabs */
+.tab-links:hover,
+.tab-links.active-link {
+  color: #ff0000; /* Highlight active tab */
+}
+
+/* Tab Content */
+.tab-contents {
+  display: none;
+}
+
+.tab-contents.active-tab {
+  display: block;
+}
+
+.tab-contents ul {
+  padding: 0;
+  list-style: none;
+}
+
+.tab-contents ul li {
+  margin: 10px 0;
+}
+
+.tab-contents ul li span {
+  color: #ff0000;
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
   .about-container {
-    display: flex;
-    align-items: center;
-    max-width: 1000px;
-    width: 90%;
-  }
-  
-  /* Left Side - Image */
-  .about-image {
-    flex: 1;
+    flex-direction: column;
     text-align: center;
   }
-  
-  .about-image img {
-    width: 500px; /* Adjust as needed */
-    height: auto;
-        object-fit: cover;
-    border: 3px solid #ff0000; /* Red border */
-    border-radius: 10px;
-  }
-  
-  /* Right Side - Text */
-  .about-text {
-    flex: 1;
-    padding-left: 20px;
-  }
-  
-  .about-text h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+
+  .about-image {
+    order: 1; /* Image stays on top on mobile */
+    margin-bottom: 20px;
   }
 
-  /* Make only "Josh" red */
-.red-text {
-    color: #ff0000; /* Red color */
+  .about-text {
+    order: 2;
+    padding-left: 0;
   }
-  
-  .about-text p {
-    font-size: 1.2rem;
-    line-height: 1.6;
+
+  .tab-titles {
+    justify-content: center;
   }
-  
+
+  .tab-links {
+    margin: 0 15px;
+  }
+}

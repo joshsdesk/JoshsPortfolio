@@ -37,7 +37,7 @@
 }
 
 .logo img {
-  height: 50px; /* Adjust size if needed */
+  height: 85px; /* Adjust size if needed */
   width: auto;
   object-fit: contain;
   vertical-align: middle; /* Ensures vertical centering */
@@ -61,13 +61,6 @@
   text-decoration: none;
   color: white;
   font-size: 1.4rem;
-}
-
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-  .logo img {
-    height: 40px; /* Adjust for mobile */
-  }
 }
 
 /* Default link styling */
@@ -95,4 +88,22 @@
   width: 100%;
 }
 
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .nav {
+    height: auto;
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-logo {
+    height: 40px; /* Smaller logo */
+  }
+}
 

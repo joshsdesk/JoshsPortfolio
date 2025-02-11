@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundImage from "../assets/images/background.png";
+import backgroundImage from "../assets/images/background-desktop2.png";
 import "./Home.css"; // Create this file for styles
 
 const Home = () => {
@@ -9,7 +9,7 @@ const Home = () => {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div class="home-text">
-        <p>Code Ninja</p>
+        <p>UX/UI Ninja</p>
         <h1>Hi, I'm <span>Josh</span> Bourassa</h1>
       </div>
     </section>
