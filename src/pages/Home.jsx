@@ -8,7 +8,7 @@ const Home = () => {
       className="home"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div class="home-text">
+      <div className="home-text">
         <p>UX/UI Ninja</p>
         <h1>Hi, I'm <span>Josh</span> Bourassa</h1>
       </div>
