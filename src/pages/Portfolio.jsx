@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
+import { Navigation, EffectCoverflow } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/effect-coverflow";
 import "./Portfolio.css";
 
 // Import images for projects
-import project1 from "../assets/images/HTML.png";
-import project2 from "../assets/images/GDesign.png";
-import project3 from "../assets/images/APPS.png";
+import project1 from "../assets/images/project1.png";
+import project2 from "../assets/images/project2.png";
+import project3 from "../assets/images/project3.png";
+import project4 from "../assets/images/project4.png";
 
 const projects = [
   { id: 1, title: "Project One", image: project1 },
   { id: 2, title: "Project Two", image: project2 },
   { id: 3, title: "Project Three", image: project3 },
+  { id: 4, title: "Project Four", image: project4 },
 ];
 
 const Portfolio = () => {
@@ -25,24 +28,34 @@ const Portfolio = () => {
 
       {/* Swiper Slider */}
       <Swiper
-        slidesPerView={3}
-        spaceBetween={30}
+        effect={"coverflow"}
         centeredSlides={true}
+        slidesPerView={"auto"}
         loop={true}
+        coverflowEffect={{
+          rotate: 0,
+          stretch: 0,
+          depth: 400,
+          modifier: 2,
+          slideShadows: false,
+        }}
         navigation={{
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
-        modules={[Navigation]}
+        modules={[Navigation, EffectCoverflow]}
         className="swiper"
       >
+        
         {projects.map((project) => (
           <SwiperSlide key={project.id} className="swiper-slide">
-            <img
-              src={project.image}
-              alt={project.title}
-              onClick={() => setSelectedProject(project)}
-            />
+            <div className="hexagon">
+              <img
+                src={project.image}
+                alt={project.title}
+                onClick={() => setSelectedProject(project)}
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>
