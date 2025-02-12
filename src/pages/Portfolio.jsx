@@ -12,15 +12,32 @@ const REPO_COUNT = 6; // Number of repos to fetch
 const Portfolio = () => {
   const [repos, setRepos] = useState([]);
   const [selectedRepo, setSelectedRepo] = useState(null);
+  const GITHUB_USERNAME = "JoshsDesk"; // Your GitHub username
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const response = await fetch(
-          `https://api.github.com/users/JoshsDesk/repos?per_page=${REPO_COUNT}`
-        );
-        const data = await response.json();
-        setRepos(data);
+        let allRepos = [];
+        let page = 1;
+        let perPage = 100; // Max allowed by GitHub API
+        let fetchedRepos = [];
+
+        do {
+          const response = await fetch(
+            `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=${perPage}&page=${page}`
+          );
+          fetchedRepos = await response.json();
+          allRepos = [...allRepos, ...fetchedRepos]; // Append fetched repos
+          page++;
+        } while (fetchedRepos.length === perPage); // Stop when fewer than `perPage` repos are returned
+
+        // Add image URL for each repository
+        const reposWithImages = allRepos.map(repo => ({
+          ...repo,
+          image: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/main/preview.png`
+        }));
+
+        setRepos(reposWithImages);
       } catch (error) {
         console.error("Error fetching GitHub repositories:", error);
       }
@@ -28,6 +45,7 @@ const Portfolio = () => {
 
     fetchRepos();
   }, []);
+
 
   // Close modal on ESC key press
   useEffect(() => {
