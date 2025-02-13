@@ -7,19 +7,17 @@ import "swiper/css/effect-coverflow";
 import "./Portfolio.css";
 
 const GITHUB_USERNAME = "JoshsDesk"; // Replace with your GitHub username
-const REPO_COUNT = 6; // Number of repos to fetch
 
 const Portfolio = () => {
   const [repos, setRepos] = useState([]);
   const [selectedRepo, setSelectedRepo] = useState(null);
-  const GITHUB_USERNAME = "JoshsDesk"; // Your GitHub username
 
   useEffect(() => {
     const fetchRepos = async () => {
       try {
         let allRepos = [];
         let page = 1;
-        let perPage = 100; // Max allowed by GitHub API
+        let perPage = 100; // GitHub API max per request
         let fetchedRepos = [];
 
         do {
@@ -27,11 +25,11 @@ const Portfolio = () => {
             `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=${perPage}&page=${page}`
           );
           fetchedRepos = await response.json();
-          allRepos = [...allRepos, ...fetchedRepos]; // Append fetched repos
+          allRepos = [...allRepos, ...fetchedRepos]; // Append repos
           page++;
-        } while (fetchedRepos.length === perPage); // Stop when fewer than `perPage` repos are returned
+        } while (fetchedRepos.length === perPage); // Continue fetching if full page
 
-        // Add image URL for each repository
+        // Add preview image URL for each repo
         const reposWithImages = allRepos.map(repo => ({
           ...repo,
           image: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/main/preview.png`
@@ -46,7 +44,6 @@ const Portfolio = () => {
     fetchRepos();
   }, []);
 
-
   // Close modal on ESC key press
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -54,7 +51,6 @@ const Portfolio = () => {
         setSelectedRepo(null);
       }
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
@@ -68,7 +64,7 @@ const Portfolio = () => {
         effect={"coverflow"}
         centeredSlides={true}
         slidesPerView={"auto"}
-        spaceBetween={40}
+        spaceBetween={40} // Proper spacing between slides
         loop={true}
         coverflowEffect={{
           rotate: 0,
@@ -87,9 +83,18 @@ const Portfolio = () => {
         {repos.map((repo) => (
           <SwiperSlide key={repo.id} className="swiper-slide">
             <div className="card" onClick={() => setSelectedRepo(repo)}>
+              <img 
+                src={repo.image} 
+                alt={repo.name} 
+                className="repo-image"
+                onError={(e) => (e.target.src = "https://via.placeholder.com/400")} // Fallback if no image
+              />
               <h3>{repo.name}</h3>
-              <p>{repo.description ? repo.description : "No description available."}</p>
-              <span>⭐ {repo.stargazers_count} | 🍴 {repo.forks_count}</span>
+              <p>{repo.description || "No description available."}</p>
+              <div className="repo-stats">
+                <span>⭐ {repo.stargazers_count}</span>
+                <span>🍴 {repo.forks_count}</span>
+              </div>
             </div>
           </SwiperSlide>
         ))}
@@ -107,7 +112,8 @@ const Portfolio = () => {
               &times;
             </span>
             <h2>{selectedRepo.name}</h2>
-            <p>{selectedRepo.description ? selectedRepo.description : "No description available."}</p>
+            <img src={selectedRepo.image} alt={selectedRepo.name} className="modal-image" />
+            <p>{selectedRepo.description || "No description available."}</p>
             <p>🌟 Stars: {selectedRepo.stargazers_count} | 🍴 Forks: {selectedRepo.forks_count}</p>
             <p>📅 Created: {new Date(selectedRepo.created_at).toLocaleDateString()}</p>
             <a href={selectedRepo.html_url} target="_blank" rel="noopener noreferrer" className="modal-link">
