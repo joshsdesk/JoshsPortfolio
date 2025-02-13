@@ -64,12 +64,7 @@ const Contact = () => {
               <a href="https://linkedin.com/in/yourprofile" className="btn-social linkedin" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
-            </li>
-            <li>
-              <a href="https://twitter.com/yourprofile" className="btn-social twitter" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-            </li>
+            </li>            
           </ul>
         </div>
       </div>

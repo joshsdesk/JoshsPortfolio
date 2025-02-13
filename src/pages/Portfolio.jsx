@@ -63,9 +63,9 @@ const Portfolio = () => {
       <Swiper
         effect={"coverflow"}
         centeredSlides={true}
-        slidesPerView={"auto"}
+        slidesPerView={"4"}
         spaceBetween={40} // Proper spacing between slides
-        loop={true}
+        loop={repos.length > 4}
         coverflowEffect={{
           rotate: 0,
           stretch: 50,

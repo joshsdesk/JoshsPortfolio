@@ -1,7 +1,7 @@
 /* Contact Page */
 .contact {
     text-align: center;
-    padding: 80px 0;
+    padding: 60px 0;
     background: black;
     color: white;
     display: flex;
@@ -9,67 +9,72 @@
     align-items: center;
 }
 
-/* Contact Container */
-.contact-container {
+/* Contact Form Container */
+.contact-card {
+    width: 450px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
 }
 
-/* Contact Form Card */
-.contact-card {
-    width: 400px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-    text-align: center;
+/* Title */
+.contact-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
 }
 
 /* Form Styling */
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    width: 100%;
+    align-items: center;
 }
 
+/* Input Fields */
 input, textarea {
-    width: 100%;
+    width: 90%;
     padding: 12px;
+    margin: 10px 0;
     border: none;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.2);
     color: white;
     font-size: 16px;
+    text-align: center;
 }
 
-input::placeholder, textarea::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
+/* Focus Effect */
 input:focus, textarea:focus {
     outline: none;
-    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.7);
 }
 
 /* Submit Button */
 .submit-btn {
+    width: 90%;
     background: #00ff00;
     color: black;
     padding: 12px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
+    font-size: 16px;
     transition: 0.3s;
+    margin-top: 15px;
+    border-radius: 5px;
     font-weight: bold;
 }
 
 .submit-btn:hover {
     background: white;
     color: black;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
 }
 
 /* Error Messages */
@@ -80,8 +85,73 @@ input:focus, textarea:focus {
 
 /* Social Media Buttons */
 .social-media {
-    text-align: center;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* Social Button Styles */
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: white;
+    transition: transform 0.5s ease-in-out, background-color 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
+}
+
+/* Neon Glow Effect */
+.btn-social:hover {
+    background-color: white;
+    color: #ff9234;
+    transform: rotateX(45deg);
+    box-shadow: 0 0 15px #ff9234, 0 0 30px #ff9234;
+}
+
+/* Alternate Movement */
+li:nth-child(odd) .btn-social:hover {
+    transform: translateY(-10px) rotateX(45deg);
+}
+
+li:nth-child(even) .btn-social:hover {
+    transform: translateY(10px) rotateX(45deg);
+}
+
+/* Button Colors */
+.github:hover {
+    color: black;
+}
+
+.linkedin:hover {
+    color: #0077b5;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .contact-card {
+        width: 90%;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+
+    .social-media {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+
+/* Social Media Buttons */
+.social-media {
     margin-top: 30px;
+    text-align: center;
 }
 
 /* Social Media Button List */
@@ -108,7 +178,7 @@ input:focus, textarea:focus {
     border: 2px solid #fff;
     border-radius: 50%;
     color: white;
-    transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    transition: transform 0.5s ease-in-out, background-color 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
     position: relative;
     overflow: hidden;
 }
@@ -116,18 +186,18 @@ input:focus, textarea:focus {
 /* Neon Glow Effect */
 .btn-social:hover {
     background-color: white;
-    color: #00ff00;
-    transform: scale(1.1);
+    color: #00ff00; /* Your requested orange color */
+    transform: rotateX(45deg);
     box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
 }
 
 /* Alternate Movement Effect */
 li:nth-child(odd) .btn-social:hover {
-    transform: translateY(-10px) scale(1.1);
+    transform: translateY(-10px) rotateX(45deg);
 }
 
 li:nth-child(even) .btn-social:hover {
-    transform: translateY(10px) scale(1.1);
+    transform: translateY(10px) rotateX(45deg);
 }
 
 /* Button Colors */
@@ -139,16 +209,8 @@ li:nth-child(even) .btn-social:hover {
     color: #0077b5;
 }
 
-.twitter:hover {
-    color: #1da1f2;
-}
-
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    .contact-card {
-        width: 90%;
-    }
-
     .social-media ul {
         flex-direction: column;
         gap: 15px;
