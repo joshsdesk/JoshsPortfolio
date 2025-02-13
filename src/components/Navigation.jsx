@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./Navigation.css";
-import logo from "../assets/images/joshslogo.png"; // Import your logo
 import Resume from "../pages/Resume"; // Import Resume modal
 
 const Navigation = () => {
@@ -25,7 +24,7 @@ const Navigation = () => {
       <nav className={`nav ${navClass}`}>
         <div className="container">
           <div className="logo">
-            <img src={logo} alt="Josh's Logo" className="nav-logo" />
+            <img src="/images/joshslogo.png" alt="Josh's Logo" className="nav-logo" />
           </div>
           <ul className="navlinks">
             <li><a href="#home">Home</a></li>

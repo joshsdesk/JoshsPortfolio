@@ -53,8 +53,6 @@ nav button {
   transition: color 0.3s ease-in-out;
 }
 
-
-
 /* Sections */
 section {
   height: 100vh;
@@ -80,7 +78,6 @@ section {
   pointer-events: none; /* Prevents interaction issues */
 }
 
-
 /* Footer */
 footer {
   text-align: center;
@@ -89,3 +86,38 @@ footer {
   position: relative;
 }
 
+/* Global Mobile Styles */
+@media screen and (max-width: 768px) {
+  /* Navigation Bar */
+  nav {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav button {
+    font-size: 16px;
+  }
+
+  /* Sections */
+  section {
+    padding: 20px;
+    height: auto;
+  }
+
+  /* Page Title Styling */
+  .page-title {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 15px;
+  }
+}

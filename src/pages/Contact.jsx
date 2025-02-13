@@ -64,7 +64,8 @@ const Contact = () => {
               <a href="https://linkedin.com/in/yourprofile" className="btn-social linkedin" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faLinkedin} />
               </a>
-            </li>            
+            </li>
+            
           </ul>
         </div>
       </div>

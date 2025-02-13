@@ -1,12 +1,11 @@
 import React from "react";
-import backgroundImage from "../assets/images/background-desktop2.png";
 import "./Home.css"; 
 
 const Home = () => {
   return (
     <section 
       className="home"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{ backgroundImage: 'url(/images/background-desktop.png)' }}
     >
       <div className="home-text">
         <p>UX/UI Ninja</p>

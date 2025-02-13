@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./About.css";
-import userImage from "../assets/images/user.png"; // Import the image
+
 
 const About = () => {
   const [activeTab, setActiveTab] = useState("skills");
@@ -17,7 +17,12 @@ const About = () => {
 
       <div className="container">
         <div className="about-container">
-          {/* Left Side - About Info & Tabs */}
+          {/*  left side -  User Image*/}
+          <div className="about-image">
+          <img src="/images/user.png" alt="User" />
+          </div>
+
+          {/* Right - About Info & Tabs */}
           <div className="about-text">
             <h2>I'm <span className="red-text">Josh</span></h2>
             <p>
@@ -51,34 +56,31 @@ const About = () => {
 
             {/* Tab Content */}
             <div className={`tab-contents ${activeTab === "skills" ? "active-tab" : ""}`}>
-              <ul>
-                <li><span>Web Layout</span><br />Web Development</li>
-                <li><span>UI/UX Design</span><br />User Interface</li>
+              <ul>            
+                <li><span>UI/UX Design</span><br />Web Development</li>
                 <li><span>React & JS</span><br />Frontend Development</li>
+                <li><span>TypeScript & SQL</span><br />Backend Development</li>
               </ul>
             </div>
 
             <div className={`tab-contents ${activeTab === "experience" ? "active-tab" : ""}`}>
               <ul>
                 <li><span>Freelancer</span><br />Web Development</li>
-                <li><span>Company XYZ</span><br />Frontend Engineer</li>
+                <li><span>Company XYZ</span><br />Frontend/Backend Development</li>
                 <li><span>Startup ABC</span><br />UI/UX Designer</li>
               </ul>
             </div>
 
             <div className={`tab-contents ${activeTab === "education" ? "active-tab" : ""}`}>
               <ul>
-                <li><span>Bachelor’s Degree</span><br />Computer Science</li>
-                <li><span>Web Dev Bootcamp</span><br />Full-Stack Development</li>
+                <li><span>Bachelor’s Degree</span><br />Broadcast Engineering</li>
+                <li><span>Web Dev Course</span><br />Full-Stack Development</li>
                 <li><span>Self-Taught</span><br />Design & Coding</li>
               </ul>
             </div>
           </div>
 
-          {/* Right Side - User Image */}
-          <div className="about-image">
-            <img src={userImage} alt="User" />
-          </div>
+          
         </div>
       </div>
     </section>
