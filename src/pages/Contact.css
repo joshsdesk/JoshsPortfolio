@@ -11,15 +11,17 @@
 
 /* Contact Form Container */
 .contact-card {
-    width: 450px;
+    width: 500px;
+    height: 500px;  /* Adjusted height for even spacing */
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.7);
+    box-shadow: 0 0 20px rgba(0, 0, 255, 0.7);
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;  /* Ensures even spacing */
     align-items: center;
 }
 
@@ -34,14 +36,16 @@ form {
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100%;  /* Makes sure all form elements are spaced evenly */
+    justify-content: space-evenly;  /* Distributes input fields evenly */
     align-items: center;
 }
 
 /* Input Fields */
 input, textarea {
     width: 90%;
+    height: 50px; /* Ensures all input fields have the same height */
     padding: 12px;
-    margin: 10px 0;
     border: none;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.2);
@@ -50,23 +54,29 @@ input, textarea {
     text-align: center;
 }
 
+/* Textarea Specific Height */
+textarea {
+    height: 100px; /* Larger height for the message box */
+    resize: none; /* Prevents resizing */
+}
+
 /* Focus Effect */
 input:focus, textarea:focus {
     outline: none;
-    box-shadow: 0 0 12px rgba(0, 255, 0, 0.7);
+    box-shadow: 0 0 12px rgba(0, 0, 255, 0.7);
 }
 
 /* Submit Button */
 .submit-btn {
     width: 90%;
-    background: #00ff00;
-    color: black;
+    height: 50px; /* Matching the input field height */
+    background: red;
+    color: white;
     padding: 12px;
     border: none;
     cursor: pointer;
     font-size: 16px;
     transition: 0.3s;
-    margin-top: 15px;
     border-radius: 5px;
     font-weight: bold;
 }
@@ -74,7 +84,7 @@ input:focus, textarea:focus {
 .submit-btn:hover {
     background: white;
     color: black;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
 }
 
 /* Error Messages */
@@ -82,72 +92,6 @@ input:focus, textarea:focus {
     color: red;
     font-size: 14px;
 }
-
-/* Social Media Buttons */
-.social-media {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
-
-/* Social Button Styles */
-.btn-social {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-    font-size: 36px;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    color: white;
-    transition: transform 0.5s ease-in-out, background-color 0.7s ease-in-out, box-shadow 0.7s ease-in-out;
-}
-
-/* Neon Glow Effect */
-.btn-social:hover {
-    background-color: white;
-    color: #ff9234;
-    transform: rotateX(45deg);
-    box-shadow: 0 0 15px #ff9234, 0 0 30px #ff9234;
-}
-
-/* Alternate Movement */
-li:nth-child(odd) .btn-social:hover {
-    transform: translateY(-10px) rotateX(45deg);
-}
-
-li:nth-child(even) .btn-social:hover {
-    transform: translateY(10px) rotateX(45deg);
-}
-
-/* Button Colors */
-.github:hover {
-    color: black;
-}
-
-.linkedin:hover {
-    color: #0077b5;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .contact-card {
-        width: 90%;
-    }
-
-    .submit-btn {
-        width: 100%;
-    }
-
-    .social-media {
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-
-
 /* Social Media Buttons */
 .social-media {
     margin-top: 30px;
@@ -186,9 +130,9 @@ li:nth-child(even) .btn-social:hover {
 /* Neon Glow Effect */
 .btn-social:hover {
     background-color: white;
-    color: #00ff00; /* Your requested orange color */
+    color: rgba(0, 0, 255, 0.7); /* Your requested orange color */
     transform: rotateX(45deg);
-    box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.7), 0 0 30px rgba(0, 0, 255, 0.7);
 }
 
 /* Alternate Movement Effect */
@@ -197,7 +141,7 @@ li:nth-child(odd) .btn-social:hover {
 }
 
 li:nth-child(even) .btn-social:hover {
-    transform: translateY(10px) rotateX(45deg);
+    transform: translateY(-10px) rotateX(45deg);
 }
 
 /* Button Colors */

@@ -7,21 +7,80 @@
   color: white;
 }
 
+/* About Section */
 .about {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full screen height */
-  background: black; 
+  text-align: center;
+  padding: 80px 0;
+  background: black;
   color: white;
 }
 
+/* About Container */
 .about-container {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   max-width: 1000px;
-  width: 90%;
+  margin: auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px rgba(0, 0, 255, 0.7);
 }
+
+/* About Image - Matches Portfolio Cards */
+.about-image {
+  width: 40%;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* About Text */
+.about-text {
+  width: 55%;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+}
+
+.about-text h2 span {
+  color: red;
+}
+
+.about-text p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* About Button */
+.about-btn {
+  background: red;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 15px rgba(0, 0, 255, 0.7);
+}
+
+.about-btn:hover {
+  background: white;
+  color: red;
+}
+
 
 /* Left Side - Image */
 .about-image {
@@ -124,28 +183,3 @@
   font-size: 14px;
 }
 
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-  .about-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-image {
-    order: 1; /* Image stays on top on mobile */
-    margin-bottom: 20px;
-  }
-
-  .about-text {
-    order: 2;
-    padding-left: 0;
-  }
-
-  .tab-titles {
-    justify-content: center;
-  }
-
-  .tab-links {
-    margin: 0 15px;
-  }
-}

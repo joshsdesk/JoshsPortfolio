@@ -1,10 +1,10 @@
 import React from "react";
 import Navigation from "./Navigation";
 
-const Header = () => {
+const Header = ({ onResumeClick }) => {
   return (
     <header>
-      <Navigation />
+      <Navigation openResumeModal={onResumeClick} />
     </header>
   );
 };
