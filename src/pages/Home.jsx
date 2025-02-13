@@ -1,6 +1,6 @@
 import React from "react";
 import backgroundImage from "../assets/images/background-desktop2.png";
-import "./Home.css"; // Create this file for styles
+import "./Home.css"; 
 
 const Home = () => {
   return (

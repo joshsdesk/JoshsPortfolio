@@ -1,0 +1,156 @@
+/* Contact Page */
+.contact {
+    text-align: center;
+    padding: 80px 0;
+    background: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contact Container */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Contact Form Card */
+.contact-card {
+    width: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    text-align: center;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+/* Submit Button */
+.submit-btn {
+    background: #00ff00;
+    color: black;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background: white;
+    color: black;
+}
+
+/* Error Messages */
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+/* Social Media Buttons */
+.social-media {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Social Media Button List */
+.social-media ul {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-media li {
+    list-style: none;
+}
+
+/* Social Button Styles */
+.btn-social {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    font-size: 36px;
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: white;
+    transition: transform 0.5s ease-in-out, background-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Neon Glow Effect */
+.btn-social:hover {
+    background-color: white;
+    color: #00ff00;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00;
+}
+
+/* Alternate Movement Effect */
+li:nth-child(odd) .btn-social:hover {
+    transform: translateY(-10px) scale(1.1);
+}
+
+li:nth-child(even) .btn-social:hover {
+    transform: translateY(10px) scale(1.1);
+}
+
+/* Button Colors */
+.github:hover {
+    color: black;
+}
+
+.linkedin:hover {
+    color: #0077b5;
+}
+
+.twitter:hover {
+    color: #1da1f2;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .contact-card {
+        width: 90%;
+    }
+
+    .social-media ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
