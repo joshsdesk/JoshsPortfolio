@@ -6,42 +6,49 @@ import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 import "./Portfolio.css";
 
-const GITHUB_USERNAME = "JoshsDesk"; // Replace with your GitHub username
+const GITHUB_USERNAME = "JoshsDesk"; // Your GitHub username
 
 const Portfolio = () => {
   const [repos, setRepos] = useState([]);
   const [selectedRepo, setSelectedRepo] = useState(null);
 
   useEffect(() => {
-    const fetchRepos = async () => {
-      try {
-        let allRepos = [];
-        let page = 1;
-        let perPage = 100; // GitHub API max per request
-        let fetchedRepos = [];
+    const storedRepos = localStorage.getItem("github_repos");
 
-        do {
-          const response = await fetch(
-            `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=${perPage}&page=${page}`
-          );
-          fetchedRepos = await response.json();
-          allRepos = [...allRepos, ...fetchedRepos]; // Append repos
-          page++;
-        } while (fetchedRepos.length === perPage); // Continue fetching if full page
+    if (storedRepos) {
+      setRepos(JSON.parse(storedRepos));
+    } else {
+      const fetchRepos = async () => {
+        try {
+          let allRepos = [];
+          let page = 1;
+          let perPage = 100;
+          let fetchedRepos = [];
 
-        // Add preview image URL for each repo
-        const reposWithImages = allRepos.map(repo => ({
-          ...repo,
-          image: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/main/preview.png`
-        }));
+          do {
+            const response = await fetch(
+              `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=${perPage}&page=${page}`
+            );
+            fetchedRepos = await response.json();
+            allRepos = [...allRepos, ...fetchedRepos];
+            page++;
+          } while (fetchedRepos.length === perPage);
 
-        setRepos(reposWithImages);
-      } catch (error) {
-        console.error("Error fetching GitHub repositories:", error);
-      }
-    };
+          // Add image URLs to each repository
+          const reposWithImages = allRepos.map(repo => ({
+            ...repo,
+            image: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/main/preview.png`
+          }));
 
-    fetchRepos();
+          setRepos(reposWithImages);
+          localStorage.setItem("github_repos", JSON.stringify(reposWithImages)); // Store in localStorage
+        } catch (error) {
+          console.error("Error fetching GitHub repositories:", error);
+        }
+      };
+
+      fetchRepos();
+    }
   }, []);
 
   // Close modal on ESC key press
@@ -55,6 +62,14 @@ const Portfolio = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Function to convert URLs in description to clickable links
+  const formatDescription = (text) => {
+    if (!text) return "No description available.";
+
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+  };
+
   return (
     <section id="portfolio" className="portfolio">
       <h1 className="page-title">Portfolio</h1>
@@ -63,8 +78,8 @@ const Portfolio = () => {
       <Swiper
         effect={"coverflow"}
         centeredSlides={true}
-        slidesPerView={"4"}
-        spaceBetween={40} // Proper spacing between slides
+        slidesPerView={"auto"}
+        spaceBetween={40}
         loop={repos.length > 4}
         coverflowEffect={{
           rotate: 0,
@@ -90,7 +105,7 @@ const Portfolio = () => {
                 onError={(e) => (e.target.src = "https://via.placeholder.com/400")} // Fallback if no image
               />
               <h3>{repo.name}</h3>
-              <p>{repo.description || "No description available."}</p>
+              <p dangerouslySetInnerHTML={{ __html: formatDescription(repo.description) }}></p>
               <div className="repo-stats">
                 <span>⭐ {repo.stargazers_count}</span>
                 <span>🍴 {repo.forks_count}</span>
@@ -113,7 +128,7 @@ const Portfolio = () => {
             </span>
             <h2>{selectedRepo.name}</h2>
             <img src={selectedRepo.image} alt={selectedRepo.name} className="modal-image" />
-            <p>{selectedRepo.description || "No description available."}</p>
+            <p dangerouslySetInnerHTML={{ __html: formatDescription(selectedRepo.description) }}></p>
             <p>🌟 Stars: {selectedRepo.stargazers_count} | 🍴 Forks: {selectedRepo.forks_count}</p>
             <p>📅 Created: {new Date(selectedRepo.created_at).toLocaleDateString()}</p>
             <a href={selectedRepo.html_url} target="_blank" rel="noopener noreferrer" className="modal-link">
