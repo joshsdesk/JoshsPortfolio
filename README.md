@@ -22,6 +22,12 @@ This is a **React-based** portfolio website built with **Vite**. It features a r
 - **Deployment:** Netlify
 
 ---
+## Image Preview
+### 🚨 **NOTE:** 📜 Image is Hyper-Linked to Site
+
+[![Portfolio Preview](preview.png)](https://joshswork.netlify.app/)
+
+---
 
 ## 🔧 Setup & Installation
 ### **1️⃣ Clone the repository**
