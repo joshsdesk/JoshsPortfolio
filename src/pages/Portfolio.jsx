@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-coverflow";
 import "./Portfolio.css";
 
-const GITHUB_USERNAME = "JoshsDesk"; // Your GitHub username
+const GITHUB_USERNAME = "JoshsDesk";
 
 const Portfolio = () => {
   const [repos, setRepos] = useState([]);
@@ -14,7 +14,6 @@ const Portfolio = () => {
 
   useEffect(() => {
     const storedRepos = localStorage.getItem("github_repos");
-
     if (storedRepos) {
       setRepos(JSON.parse(storedRepos));
     } else {
@@ -34,24 +33,21 @@ const Portfolio = () => {
             page++;
           } while (fetchedRepos.length === perPage);
 
-          // Add image URLs to each repository
           const reposWithImages = allRepos.map(repo => ({
             ...repo,
-            image: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/main/preview.png`
+            image: `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repo.name}/main/preview.png`,
           }));
 
           setRepos(reposWithImages);
-          localStorage.setItem("github_repos", JSON.stringify(reposWithImages)); // Store in localStorage
+          localStorage.setItem("github_repos", JSON.stringify(reposWithImages));
         } catch (error) {
           console.error("Error fetching GitHub repositories:", error);
         }
       };
-
       fetchRepos();
     }
   }, []);
 
-  // Close modal on ESC key press
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -62,10 +58,8 @@ const Portfolio = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Function to convert URLs in description to clickable links
   const formatDescription = (text) => {
     if (!text) return "No description available.";
-
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     return text.replace(urlRegex, (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
   };
@@ -73,25 +67,14 @@ const Portfolio = () => {
   return (
     <section id="portfolio" className="portfolio">
       <h1 className="page-title">Portfolio</h1>
-
-      {/* Swiper Slider */}
       <Swiper
         effect={"coverflow"}
         centeredSlides={true}
         slidesPerView={"auto"}
         spaceBetween={40}
         loop={repos.length > 4}
-        coverflowEffect={{
-          rotate: 0,
-          stretch: 50,
-          depth: 200,
-          modifier: 1.5,
-          slideShadows: false,
-        }}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
+        coverflowEffect={{ rotate: 0, stretch: 50, depth: 200, modifier: 1.5, slideShadows: false }}
+        navigation={{ nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" }}
         modules={[Navigation, EffectCoverflow]}
         className="swiper"
       >
@@ -102,35 +85,37 @@ const Portfolio = () => {
                 src={repo.image} 
                 alt={repo.name} 
                 className="repo-image"
-                onError={(e) => (e.target.src = "https://via.placeholder.com/400")} // Fallback if no image
+                onError={(e) => (e.target.src = "https://via.placeholder.com/400")} 
               />
               <h3>{repo.name}</h3>
-              <p dangerouslySetInnerHTML={{ __html: formatDescription(repo.description) }}></p>
+              {repo.description && <p dangerouslySetInnerHTML={{ __html: formatDescription(repo.description) }}></p>}
               <div className="repo-stats">
-                <span>⭐ {repo.stargazers_count}</span>
-                <span>🍴 {repo.forks_count}</span>
+                {repo.stargazers_count > 0 && <span>⭐ {repo.stargazers_count}</span>}
+                {repo.forks_count > 0 && <span>🍴 {repo.forks_count}</span>}
               </div>
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      {/* Swiper Navigation Buttons */}
       <div className="swiper-button-prev"></div>
       <div className="swiper-button-next"></div>
 
-      {/* Modal for Repo Details */}
       {selectedRepo && (
         <div className="modal-overlay" onClick={() => setSelectedRepo(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-modal" onClick={() => setSelectedRepo(null)}>
-              &times;
-            </span>
+            <span className="close-modal" onClick={() => setSelectedRepo(null)}>&times;</span>
             <h2>{selectedRepo.name}</h2>
             <img src={selectedRepo.image} alt={selectedRepo.name} className="modal-image" />
-            <p dangerouslySetInnerHTML={{ __html: formatDescription(selectedRepo.description) }}></p>
-            <p>🌟 Stars: {selectedRepo.stargazers_count} | 🍴 Forks: {selectedRepo.forks_count}</p>
-            <p>📅 Created: {new Date(selectedRepo.created_at).toLocaleDateString()}</p>
+            {selectedRepo.description && <p dangerouslySetInnerHTML={{ __html: formatDescription(selectedRepo.description) }}></p>}
+            {selectedRepo.stargazers_count > 0 && <p>🌟 Stars: {selectedRepo.stargazers_count}</p>}
+            {selectedRepo.forks_count > 0 && <p>🍴 Forks: {selectedRepo.forks_count}</p>}
+            {selectedRepo.created_at && <p>📅 Created: {new Date(selectedRepo.created_at).toLocaleDateString()}</p>}
+            {selectedRepo.homepage && (
+              <p>
+                🔗 <a href={selectedRepo.homepage} target="_blank" rel="noopener noreferrer">Website</a>
+              </p>
+            )}
             <a href={selectedRepo.html_url} target="_blank" rel="noopener noreferrer" className="modal-link">
               View on GitHub
             </a>
