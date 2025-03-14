@@ -1,4 +1,5 @@
-footer {
+/* Footer Section */
+.footer {
   text-align: center;
   padding: 20px;
   background: rgba(0, 0, 0, 0.8);
@@ -8,25 +9,25 @@ footer {
 }
 
 /* Style the FontAwesome icon */
-.jedi-icon {
-  color: #b700ff; /* Gold color for Space Awesome icon */
+.footer .jedi-icon {
+  color: #b700ff; /* Purple color for Space Awesome icon */
   margin-left: 5px;
 }
 
 /* SOCIAL MEDIA ICONS */
-.social-icons {
+.footer .social-icons {
   margin-top: 10px;
   display: flex;
   justify-content: center;
   gap: 15px;
 }
 
-.footer-icon {
+.footer .footer-icon {
   font-size: 24px;
   color: white;
   transition: color 0.3s ease-in-out;
 }
 
-.footer-icon:hover {
+.footer .footer-icon:hover {
   color: #ff0000; /* Red hover effect */
 }
