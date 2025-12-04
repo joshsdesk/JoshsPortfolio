@@ -12,7 +12,8 @@
 /* Contact Form Container */
 .contact-card {
     width: 500px;
-    height: 500px;  /* Adjusted height for even spacing */
+    height: 500px;
+    /* Adjusted height for even spacing */
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
     border-radius: 15px;
@@ -21,7 +22,8 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;  /* Ensures even spacing */
+    justify-content: space-between;
+    /* Ensures even spacing */
     align-items: center;
 }
 
@@ -36,15 +38,19 @@ form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 100%;  /* Makes sure all form elements are spaced evenly */
-    justify-content: space-evenly;  /* Distributes input fields evenly */
+    height: 100%;
+    /* Makes sure all form elements are spaced evenly */
+    justify-content: space-evenly;
+    /* Distributes input fields evenly */
     align-items: center;
 }
 
 /* Input Fields */
-input, textarea {
+input,
+textarea {
     width: 90%;
-    height: 50px; /* Ensures all input fields have the same height */
+    height: 50px;
+    /* Ensures all input fields have the same height */
     padding: 12px;
     border: none;
     border-radius: 5px;
@@ -56,12 +62,15 @@ input, textarea {
 
 /* Textarea Specific Height */
 textarea {
-    height: 100px; /* Larger height for the message box */
-    resize: none; /* Prevents resizing */
+    height: 100px;
+    /* Larger height for the message box */
+    resize: none;
+    /* Prevents resizing */
 }
 
 /* Focus Effect */
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
     outline: none;
     box-shadow: 0 0 12px rgba(0, 0, 255, 0.7);
 }
@@ -69,7 +78,8 @@ input:focus, textarea:focus {
 /* Submit Button */
 .submit-btn {
     width: 90%;
-    height: 50px; /* Matching the input field height */
+    height: 50px;
+    /* Matching the input field height */
     background: red;
     color: white;
     padding: 12px;
@@ -92,6 +102,7 @@ input:focus, textarea:focus {
     color: red;
     font-size: 14px;
 }
+
 /* Social Media Buttons */
 .social-media {
     margin-top: 30px;
@@ -130,7 +141,8 @@ input:focus, textarea:focus {
 /* Neon Glow Effect */
 .btn-social:hover {
     background-color: white;
-    color: rgba(0, 0, 255, 0.7); /* Your requested orange color */
+    color: rgba(0, 0, 255, 0.7);
+    /* Your requested orange color */
     transform: rotateX(45deg);
     box-shadow: 0 0 15px rgba(0, 0, 255, 0.7), 0 0 30px rgba(0, 0, 255, 0.7);
 }
@@ -155,8 +167,22 @@ li:nth-child(even) .btn-social:hover {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+    .contact-card {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+
     .social-media ul {
-        flex-direction: column;
+        flex-direction: row;
+        /* Keep row but wrap if needed, or scale down */
+        flex-wrap: wrap;
         gap: 15px;
+    }
+
+    .btn-social {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
     }
 }

@@ -11,10 +11,12 @@
   margin: 0 auto;
   padding: 40px;
   position: relative;
-  background: rgba(255, 255, 255, 0.1); /* ✅ Matches About/Contact */
+  background: rgba(255, 255, 255, 0.1);
+  /* ✅ Matches About/Contact */
   border-radius: 12px;
   box-shadow: 0 0 25px rgba(0, 0, 255, 0.4);
-  backdrop-filter: blur(10px); /* ✅ Glass effect */
+  backdrop-filter: blur(10px);
+  /* ✅ Glass effect */
 }
 
 /* Swiper */
@@ -47,8 +49,13 @@
   z-index: 10;
 }
 
-.portfolio .swiper-button-prev { left: 10px; }
-.portfolio .swiper-button-next { right: 10px; }
+.portfolio .swiper-button-prev {
+  left: 10px;
+}
+
+.portfolio .swiper-button-next {
+  right: 10px;
+}
 
 .portfolio .swiper-button-prev:hover,
 .portfolio .swiper-button-next:hover {
@@ -74,8 +81,10 @@
 /* Modal */
 .portfolio .modal-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   display: flex;
@@ -95,6 +104,25 @@
 
 /* Media */
 @media screen and (max-width: 768px) {
-  .portfolio .swiper { width: 100%; }
-  .portfolio .modal-content { width: 95%; }
+  .portfolio-container {
+    padding: 20px 10px;
+    width: 95%;
+  }
+
+  .portfolio .swiper {
+    width: 100%;
+    height: auto;
+    padding-bottom: 40px;
+  }
+
+  .portfolio .swiper-slide {
+    width: 300px;
+    /* Smaller slide width for mobile */
+    height: 450px;
+  }
+
+  .portfolio .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
 }
