@@ -57,6 +57,4 @@ const Navigation = ({ onResumeClick }) => {
   );
 };
 
-/* mobile*/
-
 export default Navigation;
